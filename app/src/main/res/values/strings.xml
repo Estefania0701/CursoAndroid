@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">MiPrimerApp</string>
+
+    <string name="num1_string_et">Primer valor</string>
+    <string name="num2_string_et">Segundo valor</string>
+    <string name="sumar_string_rb">Sumar</string>
+    <string name="restar_string_rb">Restar</string>
+    <string name="calcular_string_boton">Calcular</string>
+    <string name="resultado_string_tv">Resultado</string>
 </resources>
