@@ -3,41 +3,64 @@ package com.example.miprimerapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.widget.Toast;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.TextView;
+
 
 public class MainActivity extends AppCompatActivity {
 
-    /*
-    Toast.makeText() es un método que se utiliza para mostrar un mensaje
-    corto en forma de notificación en la pantalla del dispositivo Android.
-    Este método crea un objeto Toast que se utiliza para mostrar el mensaje.
+    // inicializo las variables que contendrán los componentes de la vista
+    // Para poder recuperar o asignar valores
+    private EditText et1, et2;
+    private TextView tv;
+    private RadioButton rb1, rb2;
 
-    Este método toma tres argumentos:
-    - El contexto actual en el que se mostrará la notificación. En este caso,
-    se utiliza this para referirse a la actividad actual.
-    - El mensaje que se va a mostrar en la notificación. En este caso, se
-    muestra el mensaje que indica el estado actual de la actividad en el ciclo
-    de vida, por ejemplo, "OnCreate" o "OnResume".
-    - La duración de la notificación, que puede ser Toast.LENGTH_SHORT para
-    una duración corta o Toast.LENGTH_LONG para una duración más larga.
-    */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // EJEMPLO DE DEBUGGEO
-        int matematicas = 5;
-        int quimica = 5;
-        int fisica = 5;
-        int promedio = 0;
+        // obtengo los componentes
+        et1 = findViewById(R.id.num1_et);
+        et2 = findViewById(R.id.num2_et);
+        tv = findViewById(R.id.resultado_tv);
+        rb1 = findViewById(R.id.sumar_rb);
+        rb2 = findViewById(R.id.restar_rb);
+    }
 
-        promedio = (matematicas + quimica + fisica) / 3;
+    // Método para el botón calcular
+    public void calcular(View view) {
 
-        if (promedio >= 6) {
-            Toast.makeText(this, "Aprobado", Toast.LENGTH_SHORT).show();
-        } else if (promedio <= 5) {
-            Toast.makeText(this, "Reprobado", Toast.LENGTH_SHORT).show();
+        // obtengo en string los valores de los edit text
+        String num1_string = et1.getText().toString();
+        String num2_string = et2.getText().toString();
+
+        // valido que el usuario haya ingresado algo en los 2 campos
+        String resultado;
+        if (num1_string.trim().isEmpty() || num2_string.trim().isEmpty()) {
+            resultado = "Primero ingresa los 2 valores a calcular";
+            tv.setText(resultado);
+        } else {
+            // los convierto a enteros
+            int num1_int = Integer.parseInt(num1_string);
+            int num2_int = Integer.parseInt(num2_string);
+
+            // reviso cuál botón se seleccionó
+            int calculo = 0;
+            if (rb1.isChecked()) {
+                calculo = num1_int + num2_int;
+                resultado = String.valueOf(calculo);
+                tv.setText(resultado);
+            } else if (rb2.isChecked()) {
+                calculo = num1_int - num2_int;
+                resultado = String.valueOf(calculo);
+                tv.setText(resultado);
+            } else {
+                resultado = "Selecciona una operación a realizar";
+                tv.setText(resultado);
+            }
         }
     }
 }

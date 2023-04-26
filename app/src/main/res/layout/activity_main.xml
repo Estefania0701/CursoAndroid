@@ -64,15 +64,16 @@
         android:layout_marginTop="36dp"
         android:text="@string/calcular_string_boton"
         android:textSize="18sp"
+        android:onClick="calcular"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
     <TextView
         android:id="@+id/resultado_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="302dp"
+        android:layout_height="81dp"
         android:layout_marginStart="56dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="20dp"
         android:text="@string/resultado_string_tv"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
