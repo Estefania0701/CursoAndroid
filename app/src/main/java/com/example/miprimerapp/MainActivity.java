@@ -3,41 +3,50 @@ package com.example.miprimerapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.widget.Toast;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    /*
-    Toast.makeText() es un método que se utiliza para mostrar un mensaje
-    corto en forma de notificación en la pantalla del dispositivo Android.
-    Este método crea un objeto Toast que se utiliza para mostrar el mensaje.
+    private TextView tv; // estatus
+    private EditText et1; // matematicas
+    private EditText et2; // física
+    private EditText et3; // química
 
-    Este método toma tres argumentos:
-    - El contexto actual en el que se mostrará la notificación. En este caso,
-    se utiliza this para referirse a la actividad actual.
-    - El mensaje que se va a mostrar en la notificación. En este caso, se
-    muestra el mensaje que indica el estado actual de la actividad en el ciclo
-    de vida, por ejemplo, "OnCreate" o "OnResume".
-    - La duración de la notificación, que puede ser Toast.LENGTH_SHORT para
-    una duración corta o Toast.LENGTH_LONG para una duración más larga.
-    */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // EJEMPLO DE DEBUGGEO
-        int matematicas = 5;
-        int quimica = 5;
-        int fisica = 5;
-        int promedio = 0;
+        // obtengo los componentes por su id
+        tv = (TextView) findViewById(R.id.estatus_tv);
+        et1 = (EditText) findViewById(R.id.matematicas_et);
+        et2 = (EditText) findViewById(R.id.fisica_et);
+        et3 = (EditText) findViewById(R.id.quimica_et);
+    }
 
-        promedio = (matematicas + quimica + fisica) / 3;
+    public void estatus(View view) {
+        // se ejecuta al presionar el botón "Evaluar"
 
+        // obtengo los valores de los componentes
+        String matematicas_string = et1.getText().toString();
+        String fisica_string = et2.getText().toString();
+        String quimica_string = et3.getText().toString();
+
+        // parseo a entero para reailzar operaciones
+        int matematicas_int = Integer.parseInt(matematicas_string);
+        int fisica_int = Integer.parseInt(fisica_string);
+        int quimica_int = Integer.parseInt(quimica_string);
+
+        // calculo el promedio
+        int promedio = (matematicas_int + fisica_int + quimica_int) / 3;
+
+        // determino si el alumno aprobó o no, y se lo asigno al tv
         if (promedio >= 6) {
-            Toast.makeText(this, "Aprobado", Toast.LENGTH_SHORT).show();
+            tv.setText("Estatus Aprobado con " + promedio);
         } else if (promedio <= 5) {
-            Toast.makeText(this, "Reprobado", Toast.LENGTH_SHORT).show();
+            tv.setText("Estatus Reprobado con " + promedio);
         }
     }
 }
