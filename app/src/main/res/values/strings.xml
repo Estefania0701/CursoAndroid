@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">MiPrimerApp</string>
+
+    <string name="estatus_string_tv">Estatus del Alumno</string>
+    <string name="matematicas_string_et">Matemáticas</string>
+    <string name="fisica_string_et">Física</string>
+    <string name="quimica_string_et">Química</string>
+    <string name="evaluar_boton">Evaluar</string>
+
 </resources>
